@@ -1,5 +1,7 @@
 <ul>
     ${recipes.map(recipe => ` 
-        <h3><a href="./recipe/${recipe.id}">${recipe.name}</a></h3>
-        <img src='${recipe.picture}' width='150' height='70'/>`).join('')}
+        <div id="recipeContainer"><a href="./recipe/${recipe.id}">
+            <h3>${recipe.name}</h3>
+            <img src='${recipe.picture}' width='150' height='70'/>`).join('')}
+        </a></div>
 </ul>

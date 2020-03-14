@@ -12,10 +12,26 @@ class RecipeDB {
              this.instructions = instructions;
     }
 
+    static async getIngredient(idList) {
+        const ingredients = [];
+        let count = 0;
+        while (count < idList.length) {
+            try {
+                const response = await db.any(`SELECT * FROM ingredient WHERE id = ${idList[count]}`);
+                ingredients.push(response);
+                count+=1;
+                
+            }catch(err) {
+                console.error(err);
+                return err;
+            }
+        }
+        return ingredients;
+    }
+
     static async getSingleRecipe(id) {
         try {
             const response = await db.any(`SELECT * FROM recipe WHERE id = ${id}`);
-            console.log(response);
             return response;
         }catch(err) {
             console.error(err);
@@ -26,13 +42,14 @@ class RecipeDB {
     static async getAllRecipes() {
         try {
             const response = await db.any(`SELECT * FROM recipe`);
-            console.log(response);
             return response;
         }catch(err) {
             console.error(err);
             return err;
         }
     }
+
+    
 }
 
 module.exports = RecipeDB;

@@ -1,4 +1,7 @@
 
 <p><img src='../${recipe[0].picture}'/></p>
-
+<hr>
+${num.map(count => `
+    <p>${ingredients[num[count]]} -- ${ingredientAmount[num[count]]} -- ${ingredientMeasurement[num[count]]} </p> `).join('')}
+<hr>
 <p>${recipe[0].instructions}</p>
