@@ -1,6 +1,8 @@
 const  express = require('express');
 const router = express.Router();
 const recipeDB = require('../models/recipeModel');
+const commentDB = require('../models/commentModel');
+const subcommentDB = require('../models/subcommentModel');
   
 router.get('/:id?', async function(req, res) {
     const num = [];
@@ -11,6 +13,8 @@ router.get('/:id?', async function(req, res) {
     const ingredients = await recipeDB.getIngredient(recipe[0].ingredientid);
     const ingredientAmount = [];
     const ingredientMeasurement = [];
+    const comment = await commentDB.getAllComments(recipe[0].id);
+    const subcomment = await subcommentDB.getAllSubcomments(comment[0].id);
 
     ingredients.forEach(element => {
       ingredientName.push(element[0].name);
@@ -33,7 +37,8 @@ router.get('/:id?', async function(req, res) {
         ingredients: ingredientName,
         ingredientAmount: ingredientAmount,
         ingredientMeasurement: ingredientMeasurement,
-        // count: count,
+        comment: comment,
+        subcomment: subcomment,
         num: num
     },
     partials: {

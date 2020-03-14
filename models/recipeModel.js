@@ -47,9 +47,7 @@ class RecipeDB {
             console.error(err);
             return err;
         }
-    }
-
-    
+    }  
 }
 
 module.exports = RecipeDB;
