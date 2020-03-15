@@ -2,7 +2,7 @@ const  express = require('express');
 const router = express.Router();
 const recipeDB = require('../models/recipeModel');
 const commentDB = require('../models/commentModel');
-const subcommentDB = require('../models/subcommentModel');
+// const subcommentDB = require('../models/subcommentModel');
   
 router.get('/:id?', async function(req, res) {
     const num = [];
@@ -14,8 +14,8 @@ router.get('/:id?', async function(req, res) {
     const ingredientAmount = [];
     const ingredientMeasurement = [];
     const comment = await commentDB.getAllComments(recipe[0].id);
-    const subcomment = await subcommentDB.getAllSubcomments(comment[0].id);
-
+    const completedComment = [];
+    
     ingredients.forEach(element => {
       ingredientName.push(element[0].name);
       num.push(count);
@@ -30,6 +30,17 @@ router.get('/:id?', async function(req, res) {
       ingredientMeasurement.push(element);
     });
 
+    comment[0].forEach(element => {
+      let subs = [];
+      comment[1].forEach(sub => {
+        if(sub.commentid === element.id) {
+          subs.push(sub);
+        }
+      });
+      completedComment.push([element, subs]);
+      
+    });
+
     res.render('template', {
       locals: {
         title: recipe[0].name, 
@@ -38,7 +49,7 @@ router.get('/:id?', async function(req, res) {
         ingredientAmount: ingredientAmount,
         ingredientMeasurement: ingredientMeasurement,
         comment: comment,
-        subcomment: subcomment,
+        completedComment: completedComment,
         num: num
     },
     partials: {

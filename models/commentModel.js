@@ -11,7 +11,8 @@ class CommentDB {
     static async getAllComments(recipeId) {
         try {
            const response = await db.any(`SELECT * FROM comment WHERE recipeId = ${recipeId}`);
-           return response; 
+           const subs = await db.any(`SELECT * FROM subcomment`)
+           return [response,subs]; 
         } catch (error) {
            console.error(error);
            return error; 
@@ -26,6 +27,23 @@ class CommentDB {
             console.error(error);
             return error;
         }
+    }
+
+    static async getAllSubcomments(commentList) {
+        const subs = [];
+        let count = 0;
+        while (count < commentList.length) {
+            try {
+                const response = await db.any(`SELECT * FROM subcomment WHERE commentid = ${commentList[count].id}`);
+                subs.push(response);
+                count+=1;
+            } catch (error) {
+                console.error(error);
+                return error;
+            }
+        }
+        return subs;
+        
     }
 }
 
