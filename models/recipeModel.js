@@ -2,7 +2,7 @@ const db = require('./conn');
 
 class RecipeDB {
     constructor(id, name, category, ingredientId,
-         ingredientAmount, ingredientMeasurement, instructions) {
+         ingredientAmount, ingredientMeasurement, instructions, userId) {
              this.id = id;
              this.name = name;
              this.category = category;
@@ -10,6 +10,7 @@ class RecipeDB {
              this.ingredientMeasurement = ingredientMeasurement;
              this.ingredientAmount = ingredientAmount;
              this.instructions = instructions;
+             this.userId = 1;
     }
 
     static async getIngredient(idList) {
@@ -47,7 +48,26 @@ class RecipeDB {
             console.error(err);
             return err;
         }
-    }  
+    }
+
+    static async getUniqueCategories() {
+        try {
+            const response = await db.any(`SELECT DISTINCT category, id FROM recipe`);
+            return response;
+        }catch(err) {
+            console.error(err);
+            return err;
+        }
+    }
+    
+    async addRecipe() {
+        try{
+            const recipe = await db.one(`INSERT INTO recipe (name, category, ingredientid, ingredientamount, ingredientmeasurement, instructions, userid)
+            VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`, [this.name, this.category, this.ingredientId, this.ingredientAmount, this.ingredientMeasurement, this.instructions, 1]);
+        }catch (error) {
+            console.error("Error: ", error);
+        }
+    };
 }
 
 module.exports = RecipeDB;

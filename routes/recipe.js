@@ -2,7 +2,6 @@ const  express = require('express');
 const router = express.Router();
 const recipeDB = require('../models/recipeModel');
 const commentDB = require('../models/commentModel');
-// const subcommentDB = require('../models/subcommentModel');
   
 router.get('/:id?', async function(req, res) {
     const num = [];
