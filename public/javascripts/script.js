@@ -5,6 +5,7 @@ const closeModalButton = document.getElementsByClassName("closeModalButton")[0];
 const addIngredientButton = document.getElementById("addIngredientButton");
 const ingredientName = document.getElementById('ingredientName');
 const ingredients = [];
+const loginButton = document.getElementById("loginButton");
 
 let count = 0;
 
@@ -30,7 +31,7 @@ addIngredientButton.addEventListener("click", function(e) {
     const ingredientAmountDiv = document.getElementById("ingredientAmount");
     const ingredientMeasurementDiv = document.getElementById('ingredientMeasurement');
     const ingredientMeasurementOptionDiv = document.getElementById('ingredientMeasurementOptionDiv');
-    
+    const ingredientSelectLandingSpot = document.getElementById('ingrdientSelectLandingSpot');
 
     const ingredientNameSelect = document.createElement('select');
     const ingredientMeasurementSelect = document.createElement('select');
@@ -86,8 +87,14 @@ addIngredientButton.addEventListener("click", function(e) {
         ingredientNameSelect.appendChild(ingredientNameOption);
     });
   
-    ingredientNameSelectDiv.appendChild(ingredientNameSelect);
-    ingredientNameSelectDiv.appendChild(ingredientAmountInput);
-    ingredientNameSelectDiv.appendChild(ingredientMeasurementSelect);
+    ingredientSelectLandingSpot.appendChild(ingredientNameSelect);
+    ingredientSelectLandingSpot.appendChild(ingredientAmountInput);
+    ingredientSelectLandingSpot.appendChild(ingredientMeasurementSelect);
     
-  });
+});
+
+loginButton.addEventListener("click", function(e) {
+    const loginModal = document.getElementById("login-modal");
+    console.log(loginModal);
+    loginModal.style.display = "block";
+});
