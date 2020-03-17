@@ -57,5 +57,18 @@ router.get('/:id?', async function(req, res) {
   });
 });
 
+router.post('/:id?', async function(req, res, next) {
+  const { commentTextArea, recipeId } = req.body;
+  console.log(recipeId);
+  const userid = 1;
+  const hasSubs = false;
+
+  const comment  = new commentDB(null, commentTextArea, userid, recipeId, hasSubs);
+  comment.postComment();
+
+  res.sendStatus(200);
+
+});
+
 
 module.exports = router;

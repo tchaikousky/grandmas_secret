@@ -52,7 +52,7 @@ class RecipeDB {
 
     static async getUniqueCategories() {
         try {
-            const response = await db.any(`SELECT DISTINCT category, id FROM recipe`);
+            const response = await db.any(`SELECT DISTINCT category FROM recipe`);
             return response;
         }catch(err) {
             console.error(err);

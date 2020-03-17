@@ -98,3 +98,25 @@ loginButton.addEventListener("click", function(e) {
     console.log(loginModal);
     loginModal.style.display = "block";
 });
+
+// addCommentButton.addEventListener("click", function(e) {
+//     const commentContainer = document.getElementById("commentContainer");
+//     const commentTextArea = document.createElement('textarea');
+//     const newCommentContainer = document.createElement('div');
+//     const newButtonContainer = document.createElement('p');
+//     const submitButton = document.createElement('button');
+//     const cancelButton = document.createElement('button');
+//     newCommentContainer.id = 'newCommentContainer';
+//     commentTextArea.id = 'commentTextArea';
+//     submitButton.id = 'submitButton';
+//     submitButton.innerHTML = 'Submit';
+//     cancelButton.id = 'cancelButton';
+//     cancelButton.innerHTML = 'Cancel';
+
+//     newButtonContainer.appendChild(submitButton);
+//     newButtonContainer.appendChild(cancelButton);
+//     newCommentContainer.appendChild(commentTextArea);
+//     newCommentContainer.appendChild(newButtonContainer);
+//     commentContainer.appendChild(newCommentContainer);
+
+// });

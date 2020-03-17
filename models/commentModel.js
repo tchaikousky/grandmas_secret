@@ -45,6 +45,17 @@ class CommentDB {
         return subs;
         
     }
+
+    async postComment() {
+        try{
+            const userid = 1;
+            const comment = await db.one(`INSERT INTO comment ( comment, userid, recipeid, hassubs)
+            VALUES ($1, $2, $3, $4) RETURNING id`, [ this.comment, this.userId, parseInt(this.recipeId), false]);
+            
+        }catch (error) {
+            console.error("Error: ", error);
+        }
+    };
 }
 
 module.exports = CommentDB;

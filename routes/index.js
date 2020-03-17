@@ -7,7 +7,7 @@ const upload = multer({dest: __dirname + '/public/images'});
 const path = require('path');
 
 
-console.log(__dirname);
+// console.log(__dirname);
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   const recipes = await recipeDB.getAllRecipes();

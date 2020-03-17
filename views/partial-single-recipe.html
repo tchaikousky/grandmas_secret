@@ -1,5 +1,5 @@
 
-<p><img src='../${recipe[0].picture}'/></p>
+<p><img src='../${recipe[0].picture}' width='650' height='400'/></p>
 <hr>
 ${num.map(count => `
     <p>${ingredients[num[count]]} -- ${ingredientAmount[num[count]]} -- ${ingredientMeasurement[num[count]]} </p> `).join('')}
@@ -7,15 +7,22 @@ ${num.map(count => `
 <p>${recipe[0].instructions}</p>
 <hr>
 <h4>Comments</h4>
-
+<div id="commentContainer">
 ${completedComment.map(comment => ` 
-    <div id="commentContainer">
         <p>${comment[0].comment}</p>
         <p>${comment[0].userid}</p>
         <div id="subcommentContainer">
             ${comment[1].map(sub => `
                 <h5>${sub.subcomment}</h5>
                 <h5>${sub.userid}</h5>`).join('')}
-            </div>`).join('')}
+        </div>`).join('')}
+        <form action="/recipe" method="POST" id="addCommentButtonContainer">
+            <input type="hidden" value="${recipe[0].id}" name="recipeId"/>
+            <button type="button" id="addCommentButton">Add Comment</button>
+            <button type="submit" id="postButton" style="display:none">Submit</button>
+        </form>    
+    </div>   
     
-    </div>    
+    <body id="section2">
+        <script src = "/javascripts/singleRecipe.js"></script>
+    </body>
