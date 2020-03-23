@@ -20,6 +20,11 @@
 
 }
 
+#recipeContainer{
+  margin-left: 25px;
+  
+}
+
 .logo{
     display: inherit;
     justify-content: flex-start;
@@ -56,6 +61,7 @@
   width: 100%;
 
 }
+
 
 .loginmodal-container {
   padding: 30px;
@@ -286,3 +292,6 @@ a {
   overflow-y: scroll;
 
 }
+
+
+

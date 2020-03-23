@@ -40,21 +40,23 @@ router.get('/:id?', async function(req, res) {
       
     });
 
-    res.render('template', {
-      locals: {
-        title: recipe[0].name, 
-        recipe: recipe,
-        ingredients: ingredientName,
-        ingredientAmount: ingredientAmount,
-        ingredientMeasurement: ingredientMeasurement,
-        comment: comment,
-        completedComment: completedComment,
-        num: num
-    },
-    partials: {
-      partial: 'partial-single-recipe'
-      }
-  });
+    res.json(recipe);
+
+    // res.render('template', {
+    //   locals: {
+    //     title: recipe[0].name, 
+    //     recipe: recipe,
+    //     ingredients: ingredientName,
+    //     ingredientAmount: ingredientAmount,
+    //     ingredientMeasurement: ingredientMeasurement,
+    //     comment: comment,
+    //     completedComment: completedComment,
+    //     num: num
+    // }
+    // partials: {
+    //   partial: 'partial-single-recipe'
+    //   }
+  // });
 });
 
 router.post('/:id?', async function(req, res, next) {

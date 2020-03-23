@@ -1,10 +1,12 @@
-<ul>
+<div id="inputContainer">
+    <div id="recipeContainer">
     ${recipes.map(recipe => ` 
-        <div id="recipeContainer"><a href="./recipe/${recipe.id}">
+        <a href="./recipe/${recipe.id}">
+            
             <h3>${recipe.name}</h3>
             <img src='${recipe.picture}' width='250' height='150'/>`).join('')}
-        </a></div>
-</ul>
+        </a>
+    </div>
 <button id="addRecipeButton">Add Recipe</button>
 
 <div id="addRecipeModal" class="modal">
@@ -81,6 +83,7 @@
         </form>
         
     </div>
+</div>
 </div>
 <body id="section2">
     <script src = "/javascripts/script.js"></script>

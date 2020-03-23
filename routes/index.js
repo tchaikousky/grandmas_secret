@@ -14,18 +14,18 @@ router.get('/', async function(req, res, next) {
   const ingredients = await ingredientDB.getAllIngredient();
   const categories = await recipeDB.getUniqueCategories();
   
-  
-  res.render('template', {
-    locals: {
-      title: "Grandma's Secret",
-      recipes: recipes,
-      ingredients: ingredients,
-      categories: categories
-      },
-    partials: {
-      partial: 'partial-index'
-      }
-  });
+  res.json(recipes);
+  // res.render('template', {
+  //   locals: {
+  //     title: "Grandma's Secret",
+  //     recipes: recipes,
+  //     ingredients: ingredients,
+  //     categories: categories
+  //     },
+  //   partials: {
+  //     partial: 'partial-index'
+  //     }
+  // });
 });
 
 router.post("/", upload.single('photo'), async function(req, res, next) {
